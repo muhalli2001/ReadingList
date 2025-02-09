@@ -13,18 +13,16 @@ func (app *application) createMovieHandler(w http.ResponseWriter, r *http.Reques
 	var input struct {
 	Title string `json:"title"`
 	Year int32 `json:"year"`
-	Runtime int32 `json:"runtime"`
+	Runtime data.Runtime `json:"runtime"` // Make this field a data.Runtime type.
 	Genres []string `json:"genres"`
 	}
 	err := app.readJSON(w, r, &input)
 	if err != nil {
-	// Use the new badRequestResponse() helper.
 	app.badRequestResponse(w, r, err)
 	return
 	}
 	fmt.Fprintf(w, "%+v\n", input)
 	}
-	
 
 func (app *application) showMovieHandler(w http.ResponseWriter, r *http.Request) {
 	id, err := app.readIDParam(r)
