@@ -1,16 +1,30 @@
 package main
 import (
 "fmt"
+//"encoding/json"
 "net/http"
 "time" // new import
 "github.com/muhalli2001/ReadingList/internal/data" // New import
-
 )
-// Add a createMovieHandler for the "POST /v1/movies" endpoint. For now we simply
-// return a plain-text placeholder response.
+
+// post method (it says that in routes.go but for clarity)
+
 func (app *application) createMovieHandler(w http.ResponseWriter, r *http.Request) {
-fmt.Fprintln(w, "create a new movie")
-}
+	var input struct {
+	Title string `json:"title"`
+	Year int32 `json:"year"`
+	Runtime int32 `json:"runtime"`
+	Genres []string `json:"genres"`
+	}
+	err := app.readJSON(w, r, &input)
+	if err != nil {
+	// Use the new badRequestResponse() helper.
+	app.badRequestResponse(w, r, err)
+	return
+	}
+	fmt.Fprintf(w, "%+v\n", input)
+	}
+	
 
 func (app *application) showMovieHandler(w http.ResponseWriter, r *http.Request) {
 	id, err := app.readIDParam(r)
