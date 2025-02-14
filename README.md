@@ -26,6 +26,7 @@ These are for the APIs which should include:
 5. List of Articles from Z legacy media company.
 6. List of Articles from etcetera.
 7. CRUD functions for users to make accounts, see their accounts, update their accounts and delete their accounts.
+8. CRUD functions for 'reading lists' basically lists of books and articles with a title like 'read in february' or something.
 
 Really that's all i've got so far I might be missing some things.
 But actionable next step is to create a feature branch and work on one of these API's!
