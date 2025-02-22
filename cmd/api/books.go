@@ -1,58 +1,38 @@
-// here we go!
-
-
 package main
+
 import (
-	"fmt"
-	//"encoding/json"
+	//"fmt"
 	"net/http"
 	"log"
-	//"time" // new import
-	//"github.com/muhalli2001/ReadingList/internal/data" // New import data
-	//"github.com/muhalli2001/ReadingList/internal/validator" // validator
-	"io/ioutil"
+	"io"
 )
 
 func (app *application) searchBookHandler(w http.ResponseWriter, r *http.Request) {
-
-
-	// the json should likely just include the user's search query. This should be limited to like 300 characters?
-	// going to try a regular get request, see if it goes through and prints when this api gets pinged.
-
+	// Fetch book data from Open Library API
 	res, err := http.Get("https://openlibrary.org/search.json?q=the+lord+of+the+rings")
-
-	//check response errors:
 	if err != nil {
-		log.Fatal(err)
+		log.Println("Error fetching data:", err)
+		app.serverErrorResponse(w, r, err)
+		return
+	}
+	defer res.Body.Close() // Ensure the body is closed
+
+	// Read response body
+	data, err := io.ReadAll(res.Body)
+	if err != nil {
+		log.Println("Error reading response body:", err)
+		app.serverErrorResponse(w, r, err)
+		return
 	}
 
-	//reading the body into data a string
-	data, _ := ioutil.ReadAll( res.Body )
-
-	//into our json use:
-	// actualenv := envelope{
-	// 	"encapsulatedData":data,
-	// }
-
-	//close response body
-	res.Body.Close()
-
-	//print data into a string
-	fmt.Printf("%s\n", data)
-
+	// Encapsulate response in envelope
 	env := envelope{
-		"status": "available",
-		"system_info": map[string]string{
-		"environment": app.config.env,
-		"version": version,
-		},
-		}
+		"encapsulatedData": string(data), // Convert []byte to string
+	}
 
+	// Send JSON response
 	err = app.writeJSON(w, http.StatusOK, env, nil)
 	if err != nil {
-	// Use the new serverErrorResponse() helper.
-	app.serverErrorResponse(w, r, err)
+		app.serverErrorResponse(w, r, err)
 	}
-
-
 }
