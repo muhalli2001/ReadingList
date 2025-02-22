@@ -10,3 +10,9 @@
 #curl -H "Content-Type: application/json" --data @text.json localhost:4000/v1/movies
 
 curl -i --data @jsontests/text.json localhost:4000/v1/movies
+
+# for now, just make sure that health check is working properly.
+
+curl -i localhost:4000/v1/healthcheck
+
+echo Tests have been ran: health check and a call to movies api
