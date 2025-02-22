@@ -15,6 +15,7 @@ func (app *application) routes() *httprouter.Router {
 	router.HandlerFunc(http.MethodGet, "/v1/healthcheck", app.healthcheckHandler) // api route for healthcheck for example. 'localhost:4000/v1/healthcheck'
 	router.HandlerFunc(http.MethodPost, "/v1/movies", app.createMovieHandler)
 	router.HandlerFunc(http.MethodGet, "/v1/movies/:id", app.showMovieHandler)
+	router.HandlerFunc(http.MethodGet,"/v1/books/search", app.searchBookHandler)
 	return router
 	}
 	
