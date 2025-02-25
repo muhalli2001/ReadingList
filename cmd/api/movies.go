@@ -46,6 +46,7 @@ func (app *application) showMovieHandler(w http.ResponseWriter, r *http.Request)
 	app.notFoundResponse(w, r)
 	return
 	}
+	
 	movie := data.Movie{
 	ID: id,
 	CreatedAt: time.Now(),
