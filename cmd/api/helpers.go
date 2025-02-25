@@ -8,6 +8,7 @@ import (
 "fmt" // New import
 "io" // New import
 "strings" //New import
+"net/url"
 )
 
 // Retrieve the "id" URL parameter from the current request context, then convert it to
@@ -98,3 +99,11 @@ func (app *application) readJSON(w http.ResponseWriter, r *http.Request, dst int
 	}
 	return nil
 	}
+
+
+	func (app *application) URLencoder(str string) string {
+		
+		EncodedStr := url.QueryEscape(str)
+		return EncodedStr
+	}
+	
