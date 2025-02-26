@@ -8,6 +8,7 @@ import (
 	"io"
 	"github.com/muhalli2001/ReadingList/internal/data" // New import data
 	"github.com/muhalli2001/ReadingList/internal/validator" // validator
+	"time"
 )
 
 func (app *application) searchBookHandler(w http.ResponseWriter, r *http.Request) {
@@ -44,14 +45,24 @@ func (app *application) searchBookHandler(w http.ResponseWriter, r *http.Request
 	QueryURL := data.BooksearchURL+"?q="+EncodedQuery+data.Fields
 
 
-	// Fetch book data from Open Library API
-	res, err := http.Get(QueryURL)
+	// Fetch book data from Open Library API, using a client to enforce a timeout in case the API is unavailable.
+	client := &http.Client{Timeout: 5 * time.Second} // 5-second timeout
+	res, err := client.Get(QueryURL)
 	if err != nil {
 		log.Println("Error fetching data:", err)
 		app.serverErrorResponse(w, r, err)
 		return
 	}
 	defer res.Body.Close() // Ensure the body is closed
+
+	// see if this can be encapsulated into something we have so far.
+	// for now, it should display any non 200 or 500 errors.
+	// will need to figure out how to test this.
+	if res.StatusCode != http.StatusOK {
+		log.Printf("API request failed: %s", res.Status)
+		app.errorResponse(w, r, res.StatusCode, "Failed to fetch book data")
+		return
+	}
 
 	// Read response body
 	responseBody, err := io.ReadAll(res.Body)
