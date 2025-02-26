@@ -29,4 +29,4 @@ These are for the APIs which should include:
 8. CRUD functions for 'reading lists' basically lists of books and articles with a title like 'read in february' or something.
 
 Really that's all i've got so far I might be missing some things.
-But actionable next step is to create a feature branch and work on one of these API's!
+Currently working on getting cover URLs to be passed with book titles so that they can get rendered on the front end at the same time.
