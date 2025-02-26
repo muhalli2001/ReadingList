@@ -19,7 +19,7 @@ Just a way to make reading a little more accessible and easy. Media makes easy o
 
 These are for the APIs which should include:
 
-1. Book searches provided by Open Library.
+1. Book searches provided by Open Library. <- an initial creation has been made.
 2. Book cover images also provided by Open Library.
 3. List of Articles from X legacy media company.
 4. List of Articles from Y legacy media company.
