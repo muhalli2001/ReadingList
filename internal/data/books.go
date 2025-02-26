@@ -9,6 +9,8 @@ type Search struct{
 	Query string `json:"query"`
 }
 
+
+// validation for user search queries. 
 func ValidateSearch(v *validator.Validator, search *Search){
 
 	v.Check(search.Query !="sanitycheck","query", "Must be provided")
@@ -18,10 +20,3 @@ func ValidateSearch(v *validator.Validator, search *Search){
 const BooksearchURL = "https://openlibrary.org/search.json"
 const Fields = "&fields=title,key,author_name"
 
-// our covers api will go here most likely.
-// mostly because it *is* an internal thing. It isn't front facing or pingable. 
-// it's barely an api it doesn't ping an external url
-// all it does is create a json struct that.
-// unless i create another internal file? 
-// dang
-// or i create the function somewhere else and create the covers struct here?

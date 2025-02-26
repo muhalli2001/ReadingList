@@ -72,6 +72,13 @@ func (app *application) searchBookHandler(w http.ResponseWriter, r *http.Request
 		return
 	}
 
+	//Going to figure out how to parse the response body. then append the cover URLS. then return the appended result.
+	//Chances are I'll have to make another key in the json. This one should be titled 'coverURLs'
+	//another note, coverURLs will go one by one, one cover url for every document in the response body
+	// there's a base case where there are no documents. Also think about how many docs is too many.
+	// Also might be a good time to think about how to implement pagination and how it could affect this.
+	// it may make it easier because every page has a specified number of docs. 
+
 	// Encapsulate response in envelope
 	env := envelope{
 		"encapsulatedData": string(responseBody), // Convert []byte to string
