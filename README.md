@@ -1,32 +1,23 @@
-YO WHATS UP
+Current Side Project!
 
-This will probably be a few months long project but its a side project to help me program a bit better and learn Go in the process.
+These are Rest web apis written in Golang for interacting with books and articles on the internet.
+You can add these to 'readinglists' sort of like spotify playlists.
 
-Right now, all the boilerplate code is done for the API's and I am going through it.
-I have routed the API's using HTTP Router. 
-They are able to 'marshal' and 'unmarshal' JSON. (basically encode and decode JSON)
-The fields of the API requests can be customized, see 'runtime.go' for more information.
-And the JSON can get validated. So for example you want a year between 1000 and 3000, you can make that a custom rule with a custom error.
-Lots of beneficial stuff so far.
+Hoping it will be a great way to keep track of long-form media that you want to read.
+Also hoping it helps people read more books and articles in general!
 
-Oh also i didn't describe the project.
+As of right now, the project allows users to search for books via OpenLibrary, a list of books gets sent to the user when they send a search query.
+Currently working on returning cover images with the book information to users. 
 
-You'll be able to view articles from your favorite legacy media.
-And you'll be able to view popular books and search for books.
+A few things it uses:
 
-Then you'll be able to add these articles and books to 'playlists' i.e. readinglists, to document what you've been reading
-Just a way to make reading a little more accessible and easy. Media makes easy objects to focus on when building API's since there are lots of open source products that provide resources for getting books and articles.
+JSON for requests and responses
+Golang programming language
+HTTP router which I will link soon.
+Git, Github
 
-These are for the APIs which should include:
+Eventually I plan to host this application with:
 
-1. Book searches provided by Open Library. <- an initial creation has been made.
-2. Book cover images also provided by Open Library.
-3. List of Articles from X legacy media company.
-4. List of Articles from Y legacy media company.
-5. List of Articles from Z legacy media company.
-6. List of Articles from etcetera.
-7. CRUD functions for users to make accounts, see their accounts, update their accounts and delete their accounts.
-8. CRUD functions for 'reading lists' basically lists of books and articles with a title like 'read in february' or something.
+Caddy reverse proxy
+DigitalOcean 
 
-Really that's all i've got so far I might be missing some things.
-Currently working on getting cover URLs to be passed with book titles so that they can get rendered on the front end at the same time.
