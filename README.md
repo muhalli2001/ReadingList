@@ -12,12 +12,16 @@ Currently working on returning cover images with the book information to users.
 A few things it uses:
 
 JSON for requests and responses
+
 Golang programming language
+
 HTTP router which I will link soon.
+
 Git, Github
 
 Eventually I plan to host this application with:
 
 Caddy reverse proxy
+
 DigitalOcean 
 
