@@ -22,6 +22,8 @@ Golang programming language
 
 HTTP router which I will link soon.
 
+Bash for scripting and testing
+
 Git, Github
 
 Eventually I plan to host this application with:
