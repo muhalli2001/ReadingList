@@ -1,7 +1,12 @@
 Current Side Project!
 
 These are Rest web apis written in Golang for interacting with books and articles on the internet.
-You can add these to 'readinglists' sort of like spotify playlists.
+
+*You can search for books and articles.
+
+*Then add these books and articles to 'Reading Lists'
+
+* ex: February: {"book_1": "book title", "book_2":"book title", "article_1", "article title"}
 
 Hoping it will be a great way to keep track of long-form media that you want to read.
 Also hoping it helps people read more books and articles in general!
